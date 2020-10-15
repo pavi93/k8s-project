@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pavi-postgres-db
+  name: pavi-postgres-db
+spec:
+  type: ClusterIP
+  ports:
+  - name: "pavi-db-service"
+    port: 5432
+    targetPort: 5432
+  selector:
+    app: pavi-postgres-db
