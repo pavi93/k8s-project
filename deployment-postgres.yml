@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pavi-postgres-db
+  name: pavi-postgres-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pavi-postgres-db
+  template:
+    metadata:
+      labels:
+        app: pavi-postgres-db
+    spec:
+      containers:
+      - image: postgres:9.4
+        name: postgres
+        env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: pavi-postgres-volume
+      volumes:
+      - name: pavi-postgres-volume
+        persistentVolumeClaim:
+          claimName: pavi-pvc
