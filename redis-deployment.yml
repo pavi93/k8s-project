@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pavi-redis
+  name: pavi-redis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pavi-redis
+  template:
+    metadata:
+      labels:
+        app: pavi-redis
+    spec:
+      containers:
+      - image: redis:alpine
+        name: pavi-redis
+        ports:
+        - containerPort: 6379
+          name: pavi-redis
+        volumeMounts:
+        - mountPath: /data
+          name: pavi-redis-data
+      volumes:
+      - name: pavi-redis-data
+        persistentVolumeClaim:
+          claimName: pavi-pvc
