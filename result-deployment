@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pavi-result
+  name: pavi-result
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pavi-result
+  template:
+    metadata:
+      labels:
+        app: pavi-result
+    spec:
+      containers:
+      - image: training/voting-app:v1
+        name: pavi-result
+        ports:
+        - containerPort: 80
+          name: pavi-result
