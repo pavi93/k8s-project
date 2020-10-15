@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pavi-vote
+  name: pavi-vote
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pavi-vote
+  template:
+    metadata:
+      labels:
+        app: pavi-vote
+    spec:
+      containers:
+      - image: training/voting-app:v1
+        name: pavi-vote
+        ports:
+        - containerPort: 80
+          name: pavi-vote
