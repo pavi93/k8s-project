@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pavi-worker
+  name: pavi-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pavi-worker
+  template:
+    metadata:
+      labels:
+        app: pavi-worker
+    spec:
+      containers:
+      - image: training/voting-worker:v1
+        name: pavi-worker
