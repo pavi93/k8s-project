@@ -5,7 +5,7 @@ metadata:
     app: pavi-worker
   name: pavi-worker
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pavi-worker
